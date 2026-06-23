@@ -1,4 +1,4 @@
-mermaid
+```mermaid
 flowchart TD
   User(["User / Browser"])
 
@@ -25,7 +25,7 @@ flowchart TD
   subgraph OpenAI ["OpenAI — External API"]
     ImageGen["gpt-image-1\nimages/generations"]
   end
-
+```
   User -->|"HTTP"| QuizUI
   APIRoute -->|"POST /analyze"| Endpoint
   OpenAIClient -->|"images API"| ImageGen
