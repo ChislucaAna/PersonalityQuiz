@@ -1,0 +1,281 @@
+"""
+Structura quiz-ului:
+  - 5 intrebari principale (would_you_rather) — raspuns yes/no
+  - Fiecare are 3 follow-up questions, afisate DOAR daca userul a raspuns "yes"
+  - Follow-up-urile captureaza detalii vizuale pentru generarea portretului
+"""
+
+QUESTIONS = [
+
+    # ─────────────────────────────────────────
+    # 1. NATURA / OUTDOOR
+    # ─────────────────────────────────────────
+    {
+        "id": 1,
+        "type": "main",
+        "category": "natura",
+        "text": "Ti-ar placea sa petreci mai mult timp in natura decat in oras?",
+        "options": [
+            {"id": "yes", "text": "Da"},
+            {"id": "no",  "text": "Nu"},
+        ],
+        "follow_ups": [
+            {
+                "id": "1a",
+                "type": "follow_up",
+                "parent_id": 1,
+                "parent_answer": "yes",
+                "text": "Ce moment din natura te incarca cel mai mult?",
+                "options": [
+                    {"id": "a", "text": "Rasaritul — liniste si inceput"},
+                    {"id": "b", "text": "Furtuna — haos si energie"},
+                    {"id": "c", "text": "Noaptea instelata — infinit si mister"},
+                    {"id": "d", "text": "Apusul — caldura si sfarsit de zi"},
+                ],
+            },
+            {
+                "id": "1b",
+                "type": "follow_up",
+                "parent_id": 1,
+                "parent_answer": "yes",
+                "text": "Unde te simti cel mai liber?",
+                "options": [
+                    {"id": "a", "text": "In varful unui munte"},
+                    {"id": "b", "text": "La marginea marii"},
+                    {"id": "c", "text": "Intr-o padure densa"},
+                    {"id": "d", "text": "Pe un camp deschis, fara niciun obstacol"},
+                ],
+            },
+            {
+                "id": "1c",
+                "type": "follow_up",
+                "parent_id": 1,
+                "parent_answer": "yes",
+                "text": "Cum esti tu in natura?",
+                "options": [
+                    {"id": "a", "text": "Stau si observ, absorb tot in tacere"},
+                    {"id": "b", "text": "Ma misc, explorez, vreau sa vad ce e dupa"},
+                    {"id": "c", "text": "Ma asez si ma pierd in ganduri"},
+                    {"id": "d", "text": "Vreau sa am pe cineva alaturi cu care sa impart momentul"},
+                ],
+            },
+        ],
+    },
+
+    # ─────────────────────────────────────────
+    # 2. SINGUR VS. CU OAMENI
+    # ─────────────────────────────────────────
+    {
+        "id": 2,
+        "type": "main",
+        "category": "sport",
+        "text": "Sportul si miscarea fac parte din viata ta?",
+        "options": [
+            {"id": "yes", "text": "Da"},
+            {"id": "no",  "text": "Nu"},
+        ],
+        "follow_ups": [
+            {
+                "id": "2a",
+                "type": "follow_up",
+                "parent_id": 2,
+                "parent_answer": "yes",
+                "text": "Cum preferi sa te misti?",
+                "options": [
+                    {"id": "a", "text": "Solo — sala, alergat, antrenament propriu"},
+                    {"id": "b", "text": "Cu altii — sport de echipa, clase de grup"},
+                    {"id": "c", "text": "In natura — hiking, ciclism, inot"},
+                    {"id": "d", "text": "Liber — dans, yoga, ceva fara reguli fixe"},
+                ],
+            },
+            {
+                "id": "2b",
+                "type": "follow_up",
+                "parent_id": 2,
+                "parent_answer": "yes",
+                "text": "Ce cauti cand faci sport?",
+                "options": [
+                    {"id": "a", "text": "Sa imi golesc mintea — nu mai gandesc la nimic"},
+                    {"id": "b", "text": "Sa imi depasesc limitele — vreau sa fiu mai bun"},
+                    {"id": "c", "text": "Sa simt adrenalina si energia"},
+                    {"id": "d", "text": "Sa fiu prezent in corp, sa ma simt viu"},
+                ],
+            },
+            {
+                "id": "2c",
+                "type": "follow_up",
+                "parent_id": 2,
+                "parent_answer": "yes",
+                "text": "Cum te simti dupa un antrenament bun?",
+                "options": [
+                    {"id": "a", "text": "Linistit si resetat — ca dupa o meditatie"},
+                    {"id": "b", "text": "Incarcat si energic — gata sa cuceresc lumea"},
+                    {"id": "c", "text": "Mandru — am facut ceva pentru mine"},
+                    {"id": "d", "text": "Epuizat fizic, dar mental eliberat"},
+                ],
+            },
+        ],
+    },
+
+    # ─────────────────────────────────────────
+    # 3. HAOS VS. ORDINE
+    # ─────────────────────────────────────────
+    {
+        "id": 3,
+        "type": "main",
+        "category": "ordine",
+        "text": "Ti-ai dori ca viata ta sa fie mai imprevizibila decat planificata?",
+        "options": [
+            {"id": "yes", "text": "Da"},
+            {"id": "no",  "text": "Nu"},
+        ],
+        "follow_ups": [
+            {
+                "id": "3a",
+                "type": "follow_up",
+                "parent_id": 3,
+                "parent_answer": "yes",
+                "text": "Ce tip de imprevizibil te atrage?",
+                "options": [
+                    {"id": "a", "text": "Sa plec undeva fara sa stiu unde"},
+                    {"id": "b", "text": "Sa incerc ceva complet nou si necunoscut"},
+                    {"id": "c", "text": "Sa las o conversatie sa ma duca unde vrea"},
+                    {"id": "d", "text": "Sa imi schimb total directia cand simt ca trebuie"},
+                ],
+            },
+            {
+                "id": "3b",
+                "type": "follow_up",
+                "parent_id": 3,
+                "parent_answer": "yes",
+                "text": "Cand esti in haos, cum reactionezi?",
+                "options": [
+                    {"id": "a", "text": "Ma aprind — haosul ma energizeaza"},
+                    {"id": "b", "text": "Ma detasez si observ din exterior"},
+                    {"id": "c", "text": "Incerc sa gasesc un fir de sens in mijlocul lui"},
+                    {"id": "d", "text": "Ma pierd in el, dar nu ma deranjeaza"},
+                ],
+            },
+            {
+                "id": "3c",
+                "type": "follow_up",
+                "parent_id": 3,
+                "parent_answer": "yes",
+                "text": "Ce simti fata de rutina?",
+                "options": [
+                    {"id": "a", "text": "Ma sufoca — simt ca stagnez"},
+                    {"id": "b", "text": "O accept dar incerc mereu sa o rup cu ceva"},
+                    {"id": "c", "text": "E un rau necesar, nu ma entuziasmeza"},
+                    {"id": "d", "text": "Depinde de rutina — unele imi plac, altele nu"},
+                ],
+            },
+        ],
+    },
+
+    # ─────────────────────────────────────────
+    # 4. EMOTII VS. RATIUNE
+    # ─────────────────────────────────────────
+    {
+        "id": 4,
+        "type": "main",
+        "category": "emotii",
+        "text": "Crezi ca emotiile tale conduc mai mult decat ratiunea?",
+        "options": [
+            {"id": "yes", "text": "Da"},
+            {"id": "no",  "text": "Nu"},
+        ],
+        "follow_ups": [
+            {
+                "id": "4a",
+                "type": "follow_up",
+                "parent_id": 4,
+                "parent_answer": "yes",
+                "text": "Care emotie te defineste cel mai bine?",
+                "options": [
+                    {"id": "a", "text": "Nostalgia — mereu cu un picior in trecut"},
+                    {"id": "b", "text": "Dorul — dupa oameni, locuri, versiuni ale mele"},
+                    {"id": "c", "text": "Entuziasmul — ma aprind repede de idei si oameni"},
+                    {"id": "d", "text": "Melancolia — o tristete frumoasa fara un motiv clar"},
+                ],
+            },
+            {
+                "id": "4b",
+                "type": "follow_up",
+                "parent_id": 4,
+                "parent_answer": "yes",
+                "text": "Cum iti procesezi emotiile puternice?",
+                "options": [
+                    {"id": "a", "text": "Le exprim imediat — trebuie sa iasa"},
+                    {"id": "b", "text": "Le tin in mine pana se aseaza singure"},
+                    {"id": "c", "text": "Le transform in ceva — scriu, creez, misc"},
+                    {"id": "d", "text": "Caut pe cineva cu care sa vorbesc"},
+                ],
+            },
+            {
+                "id": "4c",
+                "type": "follow_up",
+                "parent_id": 4,
+                "parent_answer": "yes",
+                "text": "Ce te misca cel mai tare?",
+                "options": [
+                    {"id": "a", "text": "Muzica — unele melodii ma descompun complet"},
+                    {"id": "b", "text": "Oamenii — gesturile mici, sincere"},
+                    {"id": "c", "text": "Frumusetea — un peisaj, o imagine, o fraza perfecta"},
+                    {"id": "d", "text": "Ideile — cand ceva imi schimba perspectiva"},
+                ],
+            },
+        ],
+    },
+
+    {
+        "id": 5,
+        "type": "main",
+        "category": "muzica",
+        "text": "Muzica este o parte importanta din viata ta?",
+        "options": [
+            {"id": "yes", "text": "Da"},
+            {"id": "no",  "text": "Nu"},
+        ],
+        "follow_ups": [
+            {
+                "id": "5a",
+                "type": "follow_up",
+                "parent_id": 5,
+                "parent_answer": "yes",
+                "text": "Ce simti cand asculti o melodie care te prinde cu adevarat?",
+                "options": [
+                    {"id": "a", "text": "Ma transport intr-un loc sau moment din trecut"},
+                    {"id": "b", "text": "Simt ca cineva a pus in cuvinte ce eu nu am putut"},
+                    {"id": "c", "text": "Ma eliberez — corpul se misca singur"},
+                    {"id": "d", "text": "Ma inchid in mine si ma pierd in ea"},
+                ],
+            },
+            {
+                "id": "5b",
+                "type": "follow_up",
+                "parent_id": 5,
+                "parent_answer": "yes",
+                "text": "In ce momente ai cea mai mare nevoie de muzica?",
+                "options": [
+                    {"id": "a", "text": "Cand sunt trist sau coplesite — ma tine companie"},
+                    {"id": "b", "text": "Cand am nevoie de energie — ma porneste"},
+                    {"id": "c", "text": "Cand lucrez sau creez — intra in fundal si ma focuseaza"},
+                    {"id": "d", "text": "Mereu — nu concep sa fac ceva fara ea"},
+                ],
+            },
+            {
+                "id": "5c",
+                "type": "follow_up",
+                "parent_id": 5,
+                "parent_answer": "yes",
+                "text": "Ce gen asculti cel mai des?",
+                "options": [
+                    {"id": "a", "text": "Ceva introspectiv — indie, folk, ambient, clasica"},
+                    {"id": "b", "text": "Ceva intens — rock, metal, hip-hop, electronic"},
+                    {"id": "c", "text": "Depinde total de starea mea — variez mult"},
+                    {"id": "d", "text": "Nu am un gen fix — ma misc dupa feeling"},
+                ],
+            },
+        ],
+    },
+]

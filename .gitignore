@@ -1,0 +1,42 @@
+# ---- Secrets / environment ----
+.env
+.env.*
+!.env.example
+*.local
+
+# ---- Python (portrait-service) ----
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Generated portrait images / runtime data
+portrait-service/_data/images/
+portrait-service/app/_probe.txt
+
+# ---- Node / Next.js (frontend) ----
+node_modules/
+.next/
+out/
+build/
+dist/
+*.tsbuildinfo
+next-env.d.ts
+
+# ---- Logs ----
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ---- OS / editor ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
